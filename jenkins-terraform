@@ -1,0 +1,50 @@
+  
+node {
+
+notify('Started')
+
+try {
+
+// Get Artifactory server instance, defined in the Artifactory Plugin administration page.
+    def server = Artifactory.server "jfrog-server"
+    def buildInfo = Artifactory.newBuildInfo() 
+
+
+stage('GitCheckOut') {
+git branch: 'terraform-deploy',  url: 'https://github.com/akyhcs/1-22-2021_devops.git'
+}
+
+
+
+
+stage('Build Managment') {
+      def downloadSpec = """{
+	 "files": [
+	{
+	"pattern": "devops_301_/petclinic.war",
+	"target": "tomcat/files/"
+        }
+	]
+	}"""
+	server.download spec: downloadSpec
+ }
+ 
+ 
+stage('Deployment via terraform'){
+   sh 'terraform init'
+   sh 'terraform apply --auto-approve'
+  }
+
+
+
+
+
+  notify('Completed')
+} catch(err){
+  notify("Error ${err}")
+  currentBuild.result = 'FAILURE'
+ }
+}
+def notify(status){
+	
+}
