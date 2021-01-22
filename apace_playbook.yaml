@@ -1,5 +1,5 @@
 ---
-- hosts: debian
+- hosts: jenkins-ci
   name: "My webserver App Server Deployment"
   gather_facts: False
   become: yes
