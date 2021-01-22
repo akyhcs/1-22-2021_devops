@@ -1,2 +1,2 @@
 FROM tomcat:8.0
-COPY petclinic.war /usr/local/tomcat/webapps
+COPY ./Downloads/files/petclinic.war /usr/local/tomcat/webapps
