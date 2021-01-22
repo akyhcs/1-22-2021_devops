@@ -4,7 +4,7 @@ node {
     def buildInfo = Artifactory.newBuildInfo() 
 
 // Project Dir
-    def project_path = "01-Jenkins/petclinic-code"
+    def project_path = "petclinic-code"
 
 
 stage('GitCheckOut') {
@@ -42,6 +42,7 @@ stage('Build Managment') {
 	}"""
 	server.upload spec: uploadSpec
  }
+<<<<<<< HEAD
  
 }
 stage('Deployment - Stage'){
@@ -49,3 +50,11 @@ stage('Deployment - Stage'){
     }
 
 }
+=======
+ stage('Deployment - Stage'){
+  deploy adapters: [tomcat8(credentialsId: 'tomcat01', path: '', url: 'http://fomop41962dns.eastus2.cloudapp.azure.com:8080/')], contextPath: 'petclinic', war: 'petclinic-code/target/*.war'
+    }
+  }
+
+
+>>>>>>> bef00591db12d4ad6cebe5589309db5f36b7dc9c
