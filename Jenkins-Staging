@@ -44,3 +44,7 @@ stage('Deployment - PreProd') {
   currentBuild.result = 'FAILURE'
  }
 }
+def notify(arg)
+{
+	
+}
