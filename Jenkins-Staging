@@ -36,7 +36,7 @@ stage('Publish build info') {
 }
 
 stage('Deployment - PreProd') {
-  sh 'docker-compose up -d --build'
+  sh 'docker-compose -f docker-compose.yaml up -d --build'
  }
   notify('Completed')
 } }catch(err){
