@@ -10,7 +10,7 @@ try {
 
   stage('GitCheckOut') {
 	git branch: 'staging',url: 'https://github.com/akyhcs/1-22-2021_devops.git'
-	sh 'mkdir -p Downloads/files'
+	sh 'mkdir -p ./Downloads/files'
 }
  
 // Project Dir
