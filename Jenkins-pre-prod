@@ -1,0 +1,46 @@
+node {
+// Get Artifactory server instance, defined in the Artifactory Plugin administration page.
+    def server = Artifactory.server "jfrog-server"
+    def buildInfo = Artifactory.newBuildInfo() 
+
+// Project Dir
+    def project_path = "01-Jenkins/petclinic-code"
+
+
+stage('GitCheckOut') {
+git branch: 'source-code', credentialsId: '01', url: 'https://github.com/akyhcs/1-22-2021_devops.git'
+}
+dir(project_path){
+
+stage('Maven Clean') {
+sh 'mvn clean'
+}
+
+stage('Maven Compile') {
+sh 'mvn compile'
+}
+
+stage('Maven test') {
+sh 'mvn test'
+}
+
+//stage('Sonar-Code-Analysis'){
+//sh 'mvn sonar:sonar -Dsonar.host.url=http://rlzvt92632dns.eastus2.cloudapp.azure.com:9000 
+//}
+stage('Maven pkg') {
+sh 'mvn package'
+}
+
+stage('Build Managment') {
+      def uploadSpec = """{
+	 "files": [
+	{
+	"pattern": "**/*.war",
+	"target": "devops_301_"
+        }
+	]
+	}"""
+	server.upload spec: uploadSpec
+ }
+}
+}
