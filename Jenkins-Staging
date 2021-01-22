@@ -10,8 +10,9 @@ try {
 
   stage('GitCheckOut') {
 	git branch: ' staging ',url: 'https://github.com/akyhcs/1-22-2021_devops.git'
+	sh "mkdir -p Downloads/files"
 }
-
+ 
 // Project Dir
     def project_path = "Download"
 
@@ -38,7 +39,7 @@ stage('Deployment - PreProd') {
   sh 'docker-compose up -d --build'
  }
   notify('Completed')
-} catch(err){
+} }catch(err){
   notify("Error ${err}")
   currentBuild.result = 'FAILURE'
  }
