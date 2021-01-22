@@ -36,8 +36,8 @@ stage('Publish build info') {
 }
 
 stage('Deployment - PreProd') {
-  sh 'ls'
-  sh 'docker-compose -f docker-compose-tomcat.yaml up -d '
+  sh 'cd ..'
+  sh 'docker-compose -f docker-compose-tomcat.yaml up -d'
  }
   notify('Completed')
 } }catch(err){
