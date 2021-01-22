@@ -14,7 +14,7 @@ try {
 }
  
 // Project Dir
-    def project_path = "Download"
+    def project_path = "Downloads"
 
 dir(project_path){
 
