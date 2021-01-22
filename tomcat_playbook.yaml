@@ -1,0 +1,7 @@
+---
+- hosts: debian
+  name: "My Tomcat App Server Deployment"
+  gather_facts: False
+  become: yes
+  roles:
+  - tomcat
