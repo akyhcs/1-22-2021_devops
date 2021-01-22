@@ -9,7 +9,7 @@ try {
     def buildInfo = Artifactory.newBuildInfo() 
 
   stage('GitCheckOut') {
-	git branch: 'preprod', credentialsId: '01', url: 'https://github.com/amitvashisttech/devops301-mindtree-09-Jan-2021.git'
+	git branch: ' staging ',url: 'https://github.com/akyhcs/1-22-2021_devops.git'
 }
 
 // Project Dir
